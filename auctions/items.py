@@ -6,6 +6,9 @@
 from scrapy.item import Item, Field
 
 class AuctionsItem(Item):
-    # define the fields for your item here like:
-    # name = Field()
-    pass
+    auctioneer = Field()
+    contact_number = Field()
+    date = Field()
+    time = Field()
+    location = Field()
+    link = Field()
