@@ -6,6 +6,7 @@
 from scrapy.item import Item, Field
 
 class AuctionsItem(Item):
+    id = Field()
     auctioneer = Field()
     contact_number = Field()
     date = Field()

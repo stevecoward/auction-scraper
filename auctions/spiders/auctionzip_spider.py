@@ -1,5 +1,12 @@
+from scrapy.http import Request
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
+from scrapy.contrib.loader import XPathItemLoader
+from scrapy.conf import settings
+
+from auctions.items import AuctionsItem
+
+import re
 
 class AuctionZipSpider(BaseSpider):
     name = "auctionzip"
@@ -13,9 +20,23 @@ class AuctionZipSpider(BaseSpider):
         hxs = HtmlXPathSelector(response)
         
         # featured auction + regular auction url list
-        featured_url = hxs.select("//div[contains(concat(' ', @class, ' '), ' rsInner ')]//div[1]//table//tr//td//table[1]//tr//td[1]//b//u//a//@href").extract()
-        remaining_urls = hxs.select("//div[2]//table//tr//td//table[1]//tr//td[1]//b//u//a//@href").extract()
+        featured_url = hxs.select(settings['FEATURED_URL']).extract()
+        remaining_urls = hxs.select(settings['REMAINING_URLS']).extract()
 
         auction_links = featured_url + remaining_urls
         for link in auction_links:
-            print "%s%s" % (self.domain_prefix,link)
+            yield Request("%s%s" % (self.domain_prefix, link), callback=self.parse_links)
+
+    def parse_links(self, response):
+        listing = re.findall(r"lid=(\d+)",response.url)
+
+        loader = XPathItemLoader(item=AuctionsItem(), response=response)
+        loader.add_value("id",listing[0])
+        loader.add_xpath("auctioneer",settings['AUCTION_AUCTIONEER'])
+        loader.add_xpath("contact_number",settings['AUCTION_CONTACT_NUMBER'])
+        loader.add_xpath("date",settings['AUCTION_DATE'])
+        loader.add_xpath("time",settings['AUCTION_TIME'])
+        loader.add_xpath("location",settings['AUCTION_LOCATION'])
+        loader.add_value("link",response.url)
+
+        return loader.load_item()
