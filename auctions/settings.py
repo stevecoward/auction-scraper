@@ -33,3 +33,4 @@ AUCTION_CONTACT_NUMBER = "/html/body/div[@id='body']/div[@id='bodyInner']/div[@i
 AUCTION_DATE = "/html/body/div[@id='body']/div[@id='bodyInner']/div[@id='innerContent']/div[@id='theContent']/div[@id='innersContent']/div[contains(concat(' ', @class, ' '), ' main3 '    )]/table/tr/td[1]/table/tr/td/table/tr[3]/td[2]/text()"
 AUCTION_TIME = "/html/body/div[@id='body']/div[@id='bodyInner']/div[@id='innerContent']/div[@id='theContent']/div[@id='innersContent']/div[contains(concat(' ', @class, ' '), ' main3 '    )]/table/tr/td[1]/table/tr/td/table/tr[4]/td[2]/text()"
 AUCTION_LOCATION = "/html/body/div[@id='body']/div[@id='bodyInner']/div[@id='innerContent']/div[@id='theContent']/div[@id='innersContent']/div[contains(concat(' ', @class, ' '), ' main3 ')]/table/tr/td[1]/table/tr/td/table/tr[3]/td[4]/div[1]/text()"
+AUCTION_LISTING = "//*[@id='listingReset']"

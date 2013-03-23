@@ -2,6 +2,7 @@ from scrapy.exceptions import DropItem
 from scrapy.conf import settings
 
 from dumptruck import DumpTruck
+from bs4 import BeautifulSoup
 
 class AuctionsPipeline(object):
     def open_spider(self, spider):
@@ -17,6 +18,10 @@ class AuctionsPipeline(object):
         item['date'] = '%s %s' % (' '.join(item['date']), ' '.join(item['time']))
         item['location'] = '\n'.join(item['location'])
         item['link'] = ' '.join(item['link'])
+        item['listing'] = ' '.join(item['listing'])
+
+        soup_listing = BeautifulSoup(item['listing'])
+        item['listing'] = soup_listing.get_text()
 
         if item['id'] in self.ids:
             raise DropItem('Dupe auction stored, ignoring listing: %s' % item)
@@ -28,6 +33,7 @@ class AuctionsPipeline(object):
                 'date': item['date'],
                 'location': item['location'],
                 'link': item['link'],
+                'listing': item['listing'],
             }, 'auctions')
 
             return item

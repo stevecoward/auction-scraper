@@ -13,3 +13,4 @@ class AuctionsItem(Item):
     time = Field()
     location = Field()
     link = Field()
+    listing = Field()

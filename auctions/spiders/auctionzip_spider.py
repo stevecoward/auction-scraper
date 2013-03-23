@@ -38,5 +38,6 @@ class AuctionZipSpider(BaseSpider):
         loader.add_xpath("time",settings['AUCTION_TIME'])
         loader.add_xpath("location",settings['AUCTION_LOCATION'])
         loader.add_value("link",response.url)
+        loader.add_xpath("listing",settings['AUCTION_LISTING'])
 
         return loader.load_item()
