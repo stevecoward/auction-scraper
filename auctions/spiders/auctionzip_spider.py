@@ -13,17 +13,16 @@ class AuctionZipSpider(BaseSpider):
     allowed_domains = ["auctionzip.com"]
     domain_prefix = "http://www.auctionzip.com"
     start_urls = [
-        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=3&day=23&txtSearchKeywords=firearm"
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=3&day=23&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=3&day=24&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=3&day=25&txtSearchKeywords=firearm",
     ]
 
     def parse(self, response):
         hxs = HtmlXPathSelector(response)
         
         # featured auction + regular auction url list
-        featured_url = hxs.select(settings['FEATURED_URL']).extract()
-        remaining_urls = hxs.select(settings['REMAINING_URLS']).extract()
-
-        auction_links = featured_url + remaining_urls
+        auction_links = hxs.select(settings['AUCTION_URLS']).extract()
         for link in auction_links:
             yield Request("%s%s" % (self.domain_prefix, link), callback=self.parse_links)
 
