@@ -6,7 +6,7 @@ from app.models.auction import Auction
 
 from delorean import Delorean
 
-admin = Blueprint('admin', __name__, static_folder='static', url_prefix='/admin')
+admin = Blueprint('admin', __name__, static_folder='static')
 
 @admin.route('/')
 def index():

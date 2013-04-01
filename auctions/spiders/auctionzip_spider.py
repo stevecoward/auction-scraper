@@ -13,9 +13,26 @@ class AuctionZipSpider(BaseSpider):
     allowed_domains = ["auctionzip.com"]
     domain_prefix = "http://www.auctionzip.com"
     start_urls = [
-        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=3&day=23&txtSearchKeywords=firearm",
-        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=3&day=24&txtSearchKeywords=firearm",
-        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=3&day=25&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=02&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=03&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=04&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=05&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=06&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=07&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=08&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=09&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=10&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=11&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=12&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=13&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=14&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=15&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=16&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=17&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=18&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=19&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=20&txtSearchKeywords=firearm",
+        "http://www.auctionzip.com/cgi-bin/auctionlist.cgi?txtSearchZip=19115&txtSearchRadius=100&idxSearchCategory=0&gid=0&year=2013&month=4&day=21&txtSearchKeywords=firearm",
     ]
 
     def parse(self, response):
