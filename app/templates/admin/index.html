@@ -55,7 +55,7 @@
                                 <td><a href="callto:{{ record.contact_number }}">{{ record.contact_number }}</a></td>
                                 <td><a href="http://maps.google.com/?q={{ record.location }}" target="_blank">Google Maps</a></td>
                                 <td><a href="{{ record.link }}" target="_blank">Show</a></td>
-                                <td><a href="#listingModal" role="button" class="btn btn-primary btn-small view-listing" data-toggle="modal">View/Clean Listing</a></td>
+                                <td><a href="#listingModal" data-listing-id="{{ record.id }}" role="button" class="btn btn-primary btn-small view-listing" data-toggle="modal">View/Clean Listing</a></td>
                                 <td>
                                 {% if record.dirty == 1 %}
                                     <span class="badge badge-warning"><i class="icon-warning-sign icon-white"></i></span>
@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-    <div id="listingModal" name="listingModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="listingModalLabel" aria-hidden="true">
+    <div id="listingModal" name="listingModal" data-listing-id="" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="listingModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3 id="listingModalLabel">Auction Listing</h3>
@@ -85,7 +85,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-primary">Update Listing</button>
+            <button class="btn btn-primary update-listing">Update Listing</button>
         </div>
     </div>
     <script type="text/javascript" src="{{ url_for('static',filename='libraries/jquery-ui/js/jquery-1.9.1.js') }}"></script>
