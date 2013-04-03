@@ -14,3 +14,9 @@ class AuctionsItem(Item):
     location = Field()
     link = Field()
     listing = Field()
+
+class SearchResultItem(Item):
+    id = Field()
+    name = Field()
+    link = Field()
+    price = Field()
