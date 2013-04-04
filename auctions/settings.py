@@ -11,9 +11,12 @@ BOT_NAME = 'auctions'
 SPIDER_MODULES = ['auctions.spiders']
 NEWSPIDER_MODULE = 'auctions.spiders'
 
+#DOWNLOAD_DELAY = 1.5
+
 # Pipeline checks for listing and inserts into db if not exists
 ITEM_PIPELINES = [
     'auctions.pipelines.AuctionsPipeline',
+    'auctions.pipelines.SearchResultsPipeline',
 ]
 
 #FEED_URI = '/private/var/log/auction-pro/auctions.json'

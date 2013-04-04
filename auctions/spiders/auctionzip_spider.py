@@ -10,6 +10,7 @@ import re
 
 class AuctionZipSpider(BaseSpider):
     name = "auctionzip"
+    pipelines = ["auctions"]
     allowed_domains = ["auctionzip.com"]
     domain_prefix = "http://www.auctionzip.com"
     start_urls = [

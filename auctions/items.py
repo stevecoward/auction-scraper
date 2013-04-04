@@ -17,6 +17,9 @@ class AuctionsItem(Item):
 
 class SearchResultItem(Item):
     id = Field()
+    auction_id = Field()
+    site = Field()
     name = Field()
     link = Field()
     price = Field()
+    modified = Field()
