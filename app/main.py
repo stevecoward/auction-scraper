@@ -19,6 +19,7 @@ import admin
 admin.register_to(main)
 
 from app.models.base import Session
+from app.models.auction_item import AuctionItem
 
 def format_date(date):
     return date.strftime("%a %B %d, %I:%M %p")
@@ -26,6 +27,9 @@ def format_date(date):
 def epoch(date):
     dt = Delorean(datetime=date, timezone='US/Eastern')
     return int(dt.epoch())
+
+def has_listing_prices(auction_id):
+    return True if Session().query(AuctionItem).filter(AuctionItem.auction_id == auction_id).count() > 0 else False
 
 @main.teardown_request
 def teardown_request(exception=None):
@@ -38,5 +42,6 @@ def teardown_request(exception=None):
 def page_not_found(error):
     return redirect(url_for('admin.index'))
 
+main.jinja_env.filters['has_listing_prices'] = has_listing_prices
 main.jinja_env.filters['format_date'] = format_date
 main.jinja_env.filters['epoch'] = epoch

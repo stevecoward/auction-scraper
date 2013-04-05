@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
             if(json['status'] == 'error') {
                 alert(json['message']);
             } else {
-                $('#listing_data').empty().val(json['data']);
+                $('#listing_data').empty().val(json['data']['listing']);
                 $('#listingModal').attr('data-listing-id',listing_id);
             }
         });

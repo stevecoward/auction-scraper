@@ -11,11 +11,14 @@ endpoint = Blueprint('endpoint', __name__)
 def get_auction_listing():
     data = request_to_dict(request.values)
     if 'listing_id' in data and data['listing_id'] != 0:
-        row = Session().query(Auction.listing).filter(Auction.id == data['listing_id']).first()
+        row = Session().query(Auction.listing, Auction.dirty).filter(Auction.id == data['listing_id']).first()
         if row:
             return jsonify({
                 'status': 'ok',
-                'data': row.listing
+                'data': {
+                    'listing': row.listing,
+                    'dirty': row.dirty,
+                }
             })
     
     return jsonify({'status': 'error','message': 'invalid/no listing'})
