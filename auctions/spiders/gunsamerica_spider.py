@@ -11,11 +11,11 @@ from auctions.models.auction import Auction
 
 import hashlib
 
-class GunBrokerSpider(BaseSpider):
-    name = "gunbroker"
+class GunsAmericaSpider(BaseSpider):
+    name = "gunsamerica"
     pipelines = ["search_results"]
-    allowed_domains = ["gunbroker.com"]
-    domain_prefix = "http://www.gunbroker.com"
+    allowed_domains = ["gunsamerica.com"]
+    domain_prefix = "http://www.gunsamerica.com"
 
     # intentionally blank. to be populated dynamically.
     start_urls = []
@@ -29,19 +29,22 @@ class GunBrokerSpider(BaseSpider):
         listing = listing[0].split('\n') if len(listing) > 0 else []
 
         for item in listing:
-            yield Request('%s' % settings['BASE_SEARCH_URL_GB'].replace('{keyword}',item.replace('&','%26')), self.parse)
+            yield Request('%s' % settings['BASE_SEARCH_URL_GUSA'].replace('{keyword}',item.replace('&','%26')), self.parse)
 
     def parse(self, response):
         hxs = HtmlXPathSelector(response)
-        item_name = hxs.select("//input[@id='ctl00_ctlPagePlaceHolder_Keywords']/@value").extract()
+        parse_prices = lambda l: filter(bool,[item.strip() for item in l])
+
+        item_name = hxs.select("//input[@id='ctl00_MainContent_UCLuceneSearch_SearchText']/@value").extract()
         item_hash = hashlib.md5('%s::%s::%s' % (self.auction_id, item_name, self.name)).hexdigest()
+        item_price = parse_prices(hxs.select("//table//tr//td[2]//table//tr[4]//td//table//tr//td[3]/text()").extract())
 
         loader = XPathItemLoader(item=SearchResultItem(), response=response)
         loader.add_value("id",item_hash)
         loader.add_value("auction_id",self.auction_id)
         loader.add_value("site",self.name)
-        loader.add_xpath("name","//input[@id='ctl00_ctlPagePlaceHolder_Keywords']/@value")
+        loader.add_xpath("name","//input[@id='ctl00_MainContent_UCLuceneSearch_SearchText']/@value")
         loader.add_value("link",response.url)
-        loader.add_xpath("price","//td[7]/text()")
+        loader.add_value("price",item_price)
 
         return loader.load_item()

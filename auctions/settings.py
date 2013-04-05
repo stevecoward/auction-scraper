@@ -11,7 +11,7 @@ BOT_NAME = 'auctions'
 SPIDER_MODULES = ['auctions.spiders']
 NEWSPIDER_MODULE = 'auctions.spiders'
 
-#DOWNLOAD_DELAY = 1.5
+DOWNLOAD_DELAY = 5
 
 # Pipeline checks for listing and inserts into db if not exists
 ITEM_PIPELINES = [
@@ -29,8 +29,8 @@ DB_PATH = '/Users/scoward/Development/auction-pro/auction_pro.db'
 USER_AGENT = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; Zune 4.0; InfoPath.3; MS-RTC LM 8; .NET4.0C; .NET4.0E)'
 
 BASE_SEARCH_URL_GB = "http://www.gunbroker.com/Firearms/BI.aspx?Keywords={keyword}&Timeframe=16&Sort=5&PageSize=75"
-BASE_SEARCH_URL_AL = "http://www.armslist.com/classifieds/search?location=usa&category=guns&search={keyword}"
-BASE_SEARCH_URL_GUSA = "http://www.gunsamerica.com/Search.htm?ltid-all=1&t={keyword}&og=1&as=365&numberperpage=50"
+BASE_SEARCH_URL_AL = "http://www.armslist.com/classifieds/search?location=usa&category=guns&posttype=1&search={keyword}"
+BASE_SEARCH_URL_GUSA = "http://www.gunsamerica.com/Search.htm?ltid-all=1&t={keyword}&og=1&as=365&sort=Relevance&numberperpage=50"
 BASE_SEARCH_URL_GAUC = "http://www.gunauction.com/shop/{keyword}"
 
 # XPath references for scraping auctionzip.com
