@@ -21,6 +21,9 @@ admin.register_to(main)
 from app.models.base import Session
 from app.models.auction_item import AuctionItem
 
+def format_currency(value):
+    return "${:,.2f}".format(value)
+
 def format_date(date):
     return date.strftime("%a %B %d, %I:%M %p")
 
@@ -43,5 +46,6 @@ def page_not_found(error):
     return redirect(url_for('admin.index'))
 
 main.jinja_env.filters['has_listing_prices'] = has_listing_prices
+main.jinja_env.filters['format_currency'] = format_currency
 main.jinja_env.filters['format_date'] = format_date
 main.jinja_env.filters['epoch'] = epoch

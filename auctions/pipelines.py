@@ -68,7 +68,7 @@ class SearchResultsPipeline(object):
         item['site'] = item['site'][0]
         item['link'] = item['link'][0]
         item['name'] = item['name'][0]
-        item['price'] = ','.join([x.replace(',','').replace('$','') for x in item['price']]) if 'price' in item else ''
+        item['price'] = ','.join([x.replace(',','').replace('$','') for x in item['price']]) if 'price' in item else 0
         item['modified'] = int(dt.epoch())
 
         existing_record = Session().query(AuctionItem)\

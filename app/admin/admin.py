@@ -17,5 +17,6 @@ def index():
 
 @admin.route('/auction/<int:auction_id>/listing-prices', methods=['GET'])
 def auction(auction_id):
-    print AuctionItem.get_items_by_auction(1731540)
-    return render_template('admin/auction.html')
+    auction_listing = AuctionItem.get_items_by_auction(auction_id)
+    auction = Session().query(Auction).filter(Auction.id == auction_id).first()
+    return render_template('admin/auction.html',auction=auction,auction_listing=auction_listing)

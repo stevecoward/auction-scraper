@@ -21,4 +21,29 @@ class AuctionItem(Base):
         items = Session().query(distinct(AuctionItem.name).label('name')).filter(AuctionItem.auction_id == auction_id).all()
 
         # loop thru items and gather price data
+        for item in items:
+            data = Session().query(AuctionItem)\
+                .filter(AuctionItem.auction_id == auction_id)\
+                .filter(AuctionItem.name == item.name)\
+                .all()
 
+            results.append({
+                'item': item.name, 
+                'data': [{ 
+                    'site': x.site,
+                    'modified': x.modified,
+                    'link': x.link,
+                    'max': AuctionItem.max_price(x.price),
+                    'avg': AuctionItem.avg_price(x.price)
+                } for x in data]
+            })
+
+        return results
+
+    @staticmethod
+    def max_price(s):
+        return max([float(x) for x in s.split(',')])
+
+    @staticmethod
+    def avg_price(s):
+        return round(sum([float(x) for x in s.split(',')]) / float(len([float(x) for x in s.split(',')])),2)
